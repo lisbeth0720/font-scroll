@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>文字上下滚动</title>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<style>
+			html,
+			body {
+				height: 100%;
+				width: 100%;
+			}
+
+			* {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+
+			body {
+				font-size: 2vw;
+			}
+
+			#doctorDescMore {
+				height: 30%;
+				width: 60%;
+				margin-left: 10%;
+				margin-top: 10%;
+				background: #fff;
+				color: #666;
+				font-size: 0.72em;
+				text-align: left;
+				border-radius: 6px;
+				overflow: hidden;
+				letter-spacing: 0.15em;
+			}
+
+			#doctorDescMore li {
+				width: 96%;
+				margin-left: 2%;
+				height: 14.28%;
+				text-align: left;
+			}
+
+			#doctorDescMore li:first-child {
+				/* text-indent: 2em; */
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="doctorDescMore"></ul>
+
+		<script>
+			$(function() {
+				var intro =
+					"医生，钻研学习医学科学技术，挽救生命以治病为业的人，一般指临床医师。按照卫生部、卫健委、医政部有关医疗卫生管理条例的法律法规，主持医患沟通，学术讨论，新技术推广、预后分析、公众教育、护理示教、康复培训、出院教育、执行卫生防疫、计生、大病早期识别干预等法律政治责任、承担部分课题研究等工作，预防出生缺陷提高人口素质，治病救人，履行病情如实告知、合理检查、合理开药、正确诊断，积极治疗的责任。提高医生职业风险和医疗事故安全法律意识，避免误诊漏诊、控制医源性继发损害、纠正违章作业等法律责任，通过定期临床理论考试，技能考核培训，能够熟练掌握临床必要的医学技能和必要的医学理论。"
+				$("#doctorDesc").html(intro);
+
+				var len = 26; //医生介绍文字过多时，上下滚动，每行显示最大字数
+				var newFontArry = []; //存放分行文字的数据、
+
+				if (intro.length != 0 && intro.length > len) {
+					var contentStr = insertEnter(intro, len); //拼接换行的字符串$("#longContentTd"). html( contentStr);//添加到TD中
+					newFontArry = contentStr.split("$#&%#");
+					var _html = "";
+					for (var j = 0; j < newFontArry.length; j++) {
+						_html += "<li>" + newFontArry[j] + "</li>";
+					}
+					$("#doctorDescMore").html(_html);
+					daraueue("doctorDescMore")
+				}
+			})
+
+			//文字截取并存放在数组中
+			function insertEnter(str, n) {
+				var strLength = str.length; //获取字符的长度
+				var strTemp = '';
+				if (strLength > n) { //如果字符的长度大于指定的长度
+					strTemp = str.substring(0, n); //那么截取指定长度的字符串
+					str = str.substring(n, strLength); //截取剩余的字符串
+					//在截取的指定长度的字符串添加"$#&%#"并返回
+					return strTemp + '$#&%#' + insertEnter(str, n);
+				} else {
+					return str;
+				}
+			}
+
+
+			function daraueue(id) {
+				let speed = 20; //速度
+				let stop = 1000; //停止时间
+
+				let ul = document.getElementById(id);
+				let rows = ul.getElementsByTagName("li");
+				let height = ul.getElementsByTagName("li")[0].offsetheight;
+				ul.innerHtml += ul.innerHtml;
+				let timeId = false;
+				let play = function() { //移动方法
+					ul.scrollTop++ //移动滚动条
+					//移动到底的时候恢复为零
+					if (ul.scrollTop === rows * height) {
+						ul.scrollTop = 0;
+					}
+
+					//每次滚动
+					if (ul.scrollTop % height === 0) {
+						timeId = setTimeout(play, stop)
+					} else {
+						timeID - setTimeout(play, speed);
+					}
+				}
+
+				timeID = setTimeout(play, stop);
+				ul.onmouseover = function() {
+					clearTimeout(timeID);
+				}
+				ul.onmouseout = play;
+			}
+		</script>
+	</body>
+</html>

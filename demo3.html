@@ -1,0 +1,107 @@
+<!DOCTYPE>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>文字滚动</title>
+	<style type="text/css">
+		#sidebar {
+			width: 200px;
+			height;
+			500px;
+			overflow: hidden;
+			margin: 0 auto;
+			background: #f00;
+			color: #fff;
+		}
+
+		#marquee {
+			width: 200px;
+			margin: 0;
+			padding: 0;
+		}
+
+		#marquee li {
+			width: 200px;
+			height: 20px;
+			line-height: 20px;
+		}
+
+		ul li {
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="sidebar">
+		<ul id="marquee" class="marquee spy">
+			<li>11111111111111111111111111111</li>
+			<li>22222222222222222222222222222</li>
+			<li>33333333333333333333333333333</li>
+			<li>44444444444444444444444444444</li>
+			<li>55555555555555555555555555555</li>
+			<li>asdsdssssssssssssssssssdddddd</li>
+			<li>ggggggggggggggggggggggggggggg</li>
+			<li>xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</li>
+			<li>11111111111111111111111111111</li>
+			<li>22222222222222222222222222222</li>
+			<li>33333333333333333333333333333</li>
+			<li>44444444444444444444444444444</li>
+			<li>55555555555555555555555555555</li>
+			<li>asdsdssssssssssssssssssdddddd</li>
+			<li>ggggggggggggggggggggggggggggg</li>
+			<li>xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</li>
+		</ul>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('ul.spy').simpleSpy();
+	});
+	(function($) {
+		$.fn.simpleSpy = function(limit, interval) {
+			limit = limit || 12; //展示数量
+			interval = interval || 4000;
+			return this.each(function() {
+				var $list = $(this),
+					items = [],
+					currentItem = limit,
+					total = 0,
+					height = $list.find('> li:first').height();
+
+				$list.find('> li').each(function() {
+					items.push('<li>' + $(this).html() + '</li>');
+				});
+				total = items.length;
+				$list.wrap('<div class="spyWrapper" />').parent().css({
+					height: height * limit
+				});
+				$list.find('> li').filter(':gt(' + (limit - 1) + ')').remove();
+
+				function spy() {
+					var $insert = $(items[currentItem]).css({
+						height: 0,
+						opacity: 0,
+						display: 'none'
+					}).prependTo($list);
+					$list.find('> li:last').animate({
+						opacity: 0
+					}, 1000, function() {
+						$insert.animate({
+							height: height
+						}, 1000).animate({
+							opacity: 1
+						}, 1000);
+						$(this).remove();
+					});
+					currentItem++;
+					if (currentItem >= total) {
+						currentItem = 0;
+					}
+					setTimeout(spy, interval)
+				}
+				spy();
+			});
+		};
+	})(jQuery);
+</script>
