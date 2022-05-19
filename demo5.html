@@ -59,6 +59,7 @@
 				var len = 26; //医生介绍文字过多时，上下滚动，每行显示最大字数
 				var newFontArry = []; //存放分行文字的数据、
 
+				
 				if (intro.length != 0 && intro.length > len) {
 					var contentStr = insertEnter(intro, len); //拼接换行的字符串$("#longContentTd"). html( contentStr);//添加到TD中
 					newFontArry = contentStr.split("$#&%#");
@@ -84,9 +85,9 @@
 					return str;
 				}
 			}
+			
 
 			var settime;
-
 			function roll() {
 				var mes = $("#doctorDescMore li").length;
 				clearInterval(settime);
