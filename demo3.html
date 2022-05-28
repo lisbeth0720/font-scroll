@@ -38,19 +38,19 @@
 		<li>33333333333333333333333333333</li>
 		<li>44444444444444444444444444444</li>
 		<li>55555555555555555555555555555</li>
-			<li>asdsdssssssssssssssssssdddddd</li>
-			<li>ggggggggggggggggggggggggggggg</li>
-			<li>xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</li>
-			<li>11111111111111111111111111111</li>
-			<li>22222222222222222222222222222</li>
-			<li>33333333333333333333333333333</li>
-			<li>44444444444444444444444444444</li>
-			<li>55555555555555555555555555555</li>
-			<li>66666666666666666666666666666</li>
-			<li>77777777777777777777777777777</li>
-			<li>88888888888888888888888888888</li>
-		</ul>
-	</div>
+		<li>asdsdssssssssssssssssssdddddd</li>
+		<li>ggggggggggggggggggggggggggggg</li>
+		<li>xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</li>
+		<li>11111111111111111111111111111</li>
+		<li>22222222222222222222222222222</li>
+		<li>33333333333333333333333333333</li>
+		<li>44444444444444444444444444444</li>
+		<li>55555555555555555555555555555</li>
+		<li>66666666666666666666666666666</li>
+		<li>77777777777777777777777777777</li>
+		<li>88888888888888888888888888888</li>
+	</ul>
+   </div>
 </body>
 </html>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
@@ -68,7 +68,6 @@
 					currentItem = limit,
 					total = 0,
 					height = $list.find('> li:first').height();
-
 				$list.find('> li').each(function() {
 					items.push('<li>' + $(this).html() + '</li>');
 				});
