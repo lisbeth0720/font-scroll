@@ -12,19 +12,16 @@
 			background: #f00;
 			color: #fff;
 		}
-
 		#marquee {
 			width: 200px;
 			margin: 0;
 			padding: 0;
 		}
-
 		#marquee li {
 			width: 200px;
 			height: 20px;
 			line-height: 20px;
 		}
-
 		ul li {
 			list-style: none;
 		}
@@ -64,10 +61,10 @@
 			interval = interval || 4000;
 			return this.each(function() {
 				var $list = $(this),
-					items = [],
-					currentItem = limit,
-					total = 0,
-					height = $list.find('> li:first').height();
+				items = [],
+				currentItem = limit,
+				total = 0,
+				height = $list.find('> li:first').height();
 				$list.find('> li').each(function() {
 					items.push('<li>' + $(this).html() + '</li>');
 				});
@@ -76,7 +73,6 @@
 					height: height * limit
 				});
 				$list.find('> li').filter(':gt(' + (limit - 1) + ')').remove();
-
 				function spy() {
 					var $insert = $(items[currentItem]).css({
 						height: 0,
