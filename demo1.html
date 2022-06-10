@@ -5,10 +5,12 @@
 		<title>文字上下滚动</title>
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<style>
+			
 			html,body {
 				height: 100%;
 				width: 100%;
 			}
+			
 
 			* {
 				padding: 0;
@@ -67,8 +69,10 @@
 				}
 			})
 
+			
 			//文字截取并存放在数组中
 			function insertEnter(str, n) {
+				
 				var strLength = str.length; //获取字符的长度
 				var strTemp = '';
 				if (strLength > n) { //如果字符的长度大于指定的长度
@@ -82,6 +86,7 @@
 			}
 			
 			function daraueue(id) {
+				
 				let speed = 20; //速度
 				let stop = 1000; //停止时间
 				let ul = document.getElementById(id);
