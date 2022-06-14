@@ -5,6 +5,7 @@
 		<meta name="author" content="" />
 		<title>文字列表无缝滚动代码</title>
 		<style type="text/css">
+			
 			* {
 				margin: 0px;
 				padding: 0px;
@@ -75,7 +76,9 @@
 				} else {
 					demo.scrollTop = demo.scrollTop + 1;
 				}
+				
 			}
+			
 			var MyMar = setInterval(Marquee, speed)
 			demo.onmouseover = function() {
 				clearInterval(MyMar)
@@ -83,6 +86,7 @@
 			demo.onmouseout = function() {
 				MyMar = setInterval(Marquee, speed)
 			}
+			
 			//向下滚动
 			// demo2.innerHTML=demo1.innerHTML
 			// demo.scrollTop=demo.scrollHeight
